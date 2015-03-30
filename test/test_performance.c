@@ -33,7 +33,8 @@
 #include <string.h>
 #include <time.h>
 
-#include "oaes_lib.h"
+#define _CRT_SECURE_NO_WARNINGS
+#include "..\inc\oaes_lib.h"
 
 void usage(const char * exe_name)
 {

@@ -34,8 +34,13 @@ static const char _NR[] = {
 #include <stdlib.h>
 #include <string.h>
 
-#include "oaes_config.h"
-#include "oaes_base64.h"
+#define _CRT_SECURE_NO_WARNINGS
+#include "isaac\rand.h"
+#include "isaac\standard.h"
+#include "..\inc\oaes_common.h"
+#include "..\inc\oaes_config.h"
+#include "..\inc\oaes_base64.h"
+#include "..\inc\oaes_lib.h"
 
 static const char _oaes_base64_table[] =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

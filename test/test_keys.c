@@ -28,10 +28,11 @@
  * ---------------------------------------------------------------------------
  */
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "oaes_lib.h"
+#include "..\inc\oaes_lib.h"
 
 /*
  * 

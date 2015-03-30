@@ -31,7 +31,7 @@
 #ifndef _OAES_LIB_H
 #define _OAES_LIB_H
 
-#include <oaes_common.h>
+#include "oaes_common.h"
 
 #ifdef __cplusplus 
 extern "C" {
