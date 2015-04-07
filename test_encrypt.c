@@ -33,6 +33,8 @@
 #include <string.h>
 
 #include "oaes_lib.h"
+#include "rand.h"
+#include "standard.h"
 
 void usage(const char * exe_name)
 {
