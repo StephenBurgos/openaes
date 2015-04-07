@@ -32,9 +32,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define _CRT_SECURE_NO_WARNINGS
 #define OAES_DEBUG 1
-#include "..\inc\oaes_lib.h"
+#include "oaes_lib.h"
 
 static int _is_step = 1;
 

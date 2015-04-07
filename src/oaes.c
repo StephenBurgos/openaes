@@ -33,14 +33,8 @@
 #include <string.h>
 
 #define OAES_DEBUG 1
-#define _CRT_SECURE_NO_WARNINGS
-#include "isaac\rand.h"
-#include "isaac\standard.h"
-#include "..\inc\oaes_common.h"
-#include "..\inc\oaes_config.h"
-#include "..\inc\oaes_base64.h"
-#include "..\inc\oaes_lib.h"
-
+#include "oaes_lib.h"
+#include "oaes_base64.h"
 
 #if defined(_WIN32) && !defined(__SYMBIAN32__)
 #include <io.h>
@@ -333,7 +327,7 @@ static int _get_user_input_iv(void)
   size_t _buf_len = 0;
 
   fprintf(stderr, "Enter base64-encoded iv: ");
-  scanf_s("%8192s", _iv_ent);
+  scanf("%8192s", _iv_ent);
   if( oaes_base64_decode(
     _iv_ent, strlen(_iv_ent), NULL, &_buf_len ) )
   {
@@ -371,7 +365,7 @@ static int _get_user_input_key(void)
   size_t _buf_len = 0;
 
   fprintf(stderr, "Enter base64-encoded key: ");
-  scanf_s("%8192s", _key_data_ent);
+  scanf("%8192s", _key_data_ent);
   if( oaes_base64_decode(
     _key_data_ent, strlen(_key_data_ent), NULL, &_buf_len ) )
   {
@@ -488,13 +482,13 @@ int main(int argc, char** argv)
       return EXIT_FAILURE;
     }
     oaes_free(&_oaes);
-    if( 0 == _access(_file_k, 00) )
+    if( 0 == access(_file_k, 00) )
     {
       fprintf(stderr,
         "Error: '%s' already exists.\n", _file_k);
       return EXIT_FAILURE;
     }
-    _f_k = fopen_s(_file_k, "wb", NULL);
+    _f_k = fopen(_file_k, "wb");
     if( NULL == _f_k )
     {
       fprintf(stderr,
@@ -658,7 +652,7 @@ int main(int argc, char** argv)
         fprintf(stderr, "Error: Failed to initialize OAES.\n");
         return OAES_RET_MEM;
       }
-      _f_k = fopen_s(_file_k, "rb", NULL);
+      _f_k = fopen(_file_k, "rb");
       if( NULL == _f_k )
       {
         fprintf(stderr,
@@ -752,7 +746,7 @@ int main(int argc, char** argv)
 
   if( _file_in )
   {
-    _f_in = fopen_s(_file_in, "rb", NULL);
+    _f_in = fopen(_file_in, "rb");
     if( NULL == _f_in )
     {
       fprintf(stderr,
@@ -762,20 +756,20 @@ int main(int argc, char** argv)
   }
   else
   {
-    if( _setmode(_fileno(stdin), 0x8000) < 0 )
+    if( setmode(fileno(stdin), 0x8000) < 0 )
       fprintf(stderr,"Error: Failed in setmode().\n");
     _f_in = stdin;
   }
 
   if( _file_out )
   {
-    if( 0 == _access(_file_out, 00) )
+    if( 0 == access(_file_out, 00) )
     {
       fprintf(stderr,
         "Error: '%s' already exists.\n", _file_out);
       return EXIT_FAILURE;
     }
-    _f_out = fopen_s(_file_out, "wb", NULL);
+    _f_out = fopen(_file_out, "wb");
     if( NULL == _f_out )
     {
       fprintf(stderr,
@@ -787,7 +781,7 @@ int main(int argc, char** argv)
   }
   else
   {
-    if( _setmode(_fileno(stdout), 0x8000) < 0 )
+    if( setmode(fileno(stdout), 0x8000) < 0 )
       fprintf(stderr, "Error: Failed in setmode().\n");
     _f_out = stdout;
   }
