@@ -27,14 +27,42 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ---------------------------------------------------------------------------
  */
+ 
+ /*
+	Edited by Stephen Burgos for
+	CIS 363, Indiana Wesleyan University, final project
+	This code encrypts a text string by using the following prototype:
+	./<exe_name>.exe [-ecb] [-key < 128 | 192 | 256 >] <text>
+	Code blocks with "// Added by Stephen Burgos" before them are original code by myself
+	The code following this comment is original to myself and I wrote it myself
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+// Added by Stephen Burgos
+#include <time.h> 
+#include <sys/time.h>
+
 #include "oaes_lib.h"
 #include "rand.h"
 #include "standard.h"
+
+// Added by Stephen Burgos
+typedef unsigned long long timestamp_t;
+const int MICROSECONDS_PER_SECOND = 1000000.0L;
+
+void calc_timing(timestamp_t time0, timestamp_t time1)
+{
+	// Precondition: None
+	// Postcondition: The time taken for counting has been printed
+	// Added by Stephen Burgos
+	double secs = (time1 - time0) / (MICROSECONDS_PER_SECOND * 1.0);
+	long usecs = time1 - time0;
+	//std::cout << "Time taken (secs): " << secs << ", usecs: " << usecs << std::endl;
+	printf("Time taken: %f seconds, %ld microseconds\n", secs, usecs);
+}
 
 void usage(const char * exe_name)
 {
@@ -50,6 +78,9 @@ void usage(const char * exe_name)
 
 int main(int argc, char** argv)
 {
+  // Added by Stephen Burgos
+  clock_t time0 = clock();
+
   size_t _i;
   OAES_CTX * ctx = NULL;
   uint8_t *_encbuf, *_decbuf;
@@ -232,6 +263,10 @@ int main(int argc, char** argv)
   free( _encbuf );
   free( _decbuf );
   free( _text );
-
+  
+  // Added by Stephen Burgos
+  clock_t time1 = clock();
+  calc_timing(time0, time1); // Final Time
+  
   return (EXIT_SUCCESS);
 }
