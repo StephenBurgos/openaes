@@ -13,7 +13,6 @@ void calc_timing(timestamp_t time0, timestamp_t time1)
 	// Postcondition: The time taken for counting has been printed
 	double secs = (time1 - time0) / (MICROSECONDS_PER_SECOND * 1.0);
 	long usecs = time1 - time0;
-	//std::cout << "Time taken (secs): " << secs << ", usecs: " << usecs << std::endl;
 	printf("Time taken: %f seconds, %ld microseconds\n", secs, usecs);
 }
 
