@@ -7,15 +7,6 @@
 typedef unsigned long long timestamp_t;
 const int MICROSECONDS_PER_SECOND = 1000000.0L;
 
-timestamp_t get_timestamp()
-{
-	// Precondition: None
-	// Postcondition: The current time is returned
-	struct timeval now;
-	::gettimeofday (&now, NULL);
-	return now.tv_usec + static_cast<timestamp_t>(now.tv_sec) * MICROSECONDS_PER_SECOND;
-}
-
 void calc_timing(timestamp_t time0, timestamp_t time1)
 {
 	// Precondition: None
@@ -28,10 +19,14 @@ void calc_timing(timestamp_t time0, timestamp_t time1)
 
 int main()
 {
-
-	timestamp_t time0 = get_timestamp();
-	// Code here
-	timestamp_t time1 = get_timestamp();
+	int indexMax = 1000000;
+	clock_t time0 = clock();
+	int i;
+	for(i = 0; i < indexMax; ++i) // Pointless for loop to take up running time
+	{
+		int x = 243;
+	}
+	clock_t time1 = clock();
 	calc_timing(time0, time1); // Final Time
 
 	return 0;
