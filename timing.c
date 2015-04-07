@@ -19,13 +19,8 @@ void calc_timing(timestamp_t time0, timestamp_t time1)
 
 int main()
 {
-	int indexMax = 1000000;
 	clock_t time0 = clock();
-	int i;
-	for(i = 0; i < indexMax; ++i) // Pointless for loop to take up running time
-	{
-		int x = 243;
-	}
+	// Code to be timed here
 	clock_t time1 = clock();
 	calc_timing(time0, time1); // Final Time
 
