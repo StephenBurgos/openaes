@@ -41,11 +41,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "oaes_lib.h"
+
 // Added by Stephen Burgos
 #include <time.h> 
 #include <sys/time.h>
-
-#include "oaes_lib.h"
 #include "rand.h"
 #include "standard.h"
 
@@ -60,7 +60,6 @@ void calc_timing(timestamp_t time0, timestamp_t time1)
 	// Added by Stephen Burgos
 	double secs = (time1 - time0) / (MICROSECONDS_PER_SECOND * 1.0);
 	long usecs = time1 - time0;
-	//std::cout << "Time taken (secs): " << secs << ", usecs: " << usecs << std::endl;
 	printf("Time taken: %f seconds, %ld microseconds\n", secs, usecs);
 }
 
