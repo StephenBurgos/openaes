@@ -57,7 +57,7 @@ void calc_timing(timestamp_t time0, timestamp_t time1)
 {
 	// Precondition: None
 	// Postcondition: The time taken for counting has been printed
-	// Function added by Stephen Burgos
+	// Added by Stephen Burgos
 	double secs = (time1 - time0) / (MICROSECONDS_PER_SECOND * 1.0);
 	long usecs = time1 - time0;
 	printf("Time taken: %f seconds, %ld microseconds\n", secs, usecs);
